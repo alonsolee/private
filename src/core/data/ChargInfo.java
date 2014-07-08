@@ -12,6 +12,8 @@ public class ChargInfo {
 	protected String frpId = "";
 	// 服务器的接收充值结果的回调地址
 	protected String cbURL = "";
+	
+	protected int responseCode;
 
 	/**
 	 * @return the orderNumber
@@ -88,4 +90,20 @@ public class ChargInfo {
 		this.cbURL = cbURL;
 	}
 
+	/**
+	 * @return the responseCode
+	 */
+	public int getResponseCode() {
+		return responseCode;
+	}
+
+	/**
+	 * @param responseCode the responseCode to set
+	 */
+	public void setResponseCode(int responseCode) {
+		this.responseCode = responseCode;
+	}
+
+	
+	
 }

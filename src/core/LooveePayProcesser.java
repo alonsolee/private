@@ -3,6 +3,8 @@
  */
 package core;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 
 import core.listener.PayWorkingStateListener;
@@ -53,6 +55,16 @@ public class LooveePayProcesser {
 					+ " has been added.ignore");
 		}
 	}
+	
+	public String getOutTradeNo(){
+		SimpleDateFormat format = new SimpleDateFormat("MMddHHmmss");
+		String strKey = format.format(new Date());
+
+		java.util.Random r = new java.util.Random();
+		strKey = strKey + r.nextInt();
+		strKey = strKey.substring(0, 15);
+		return strKey;
+	}
 
 	public void startPay(Object chargeInfo, PayWorkingStateListener listener) {
 		if (chargeInfo == null) {
@@ -66,12 +78,12 @@ public class LooveePayProcesser {
 			return;
 		}
 
-		if (curPayMethod != null) {
-			LLog.w(TAG, curPayMethod.getClass().getSimpleName()
-					+ " is processing pay request "
-					+ curPayMethod.getPayData().toString());
-			return;
-		}
+//		if (curPayMethod != null) {
+//			LLog.w(TAG, curPayMethod.getClass().getSimpleName()
+//					+ " is processing pay request "
+//					+ curPayMethod.getPayData().toString());
+//			return;
+//		}
 
 		curPayMethod = payProcessers.get(chargeInfo.getClass().getSimpleName());
 		curPayMethod.setWorkingStateListener(listener);

@@ -1,5 +1,6 @@
 package core.process;
 
+import android.os.Handler;
 import core.listener.PayWorkingStateListener;
 
 public abstract class BasePayMethodInterface {
@@ -18,9 +19,11 @@ public abstract class BasePayMethodInterface {
 	
 	public abstract void invokePayRequest();
 	
-	public abstract void checkChargeInfo();
+	public abstract boolean checkChargeInfo();
 	
 	protected Object payData;
+	
+	protected Handler mHandler;
 
 	public boolean isPayMethodEnable() {
 		return isPayMethodEnable;
